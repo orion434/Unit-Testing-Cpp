@@ -34,6 +34,10 @@ jobs:
       - run:
           name: Point Unit Testing
           command: './bin/pointTest.x'
+      - save_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+          - ~/circleci-demo-workflows
 
     #test:
     #  pre:
@@ -115,11 +119,11 @@ jobs:
 workflows:
   version: 2.1
   multiple-builds:
-     jobs:
-      # - build-docker-1804
+    jobs:
+    - build-docker-1804
       # - build-machine-1604
 
-      - build-create-cache
+    - build-create-cache
      # - build-use-cache:
      #      requires: 
      #       - build-docker-1804
