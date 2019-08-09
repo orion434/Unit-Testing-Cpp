@@ -73,13 +73,15 @@ jobs:
       - image: circleci/ruby:2.4.1 #  preinstalled git, ssh, gzip, tar, ca-certificates, curl, wget
 
     steps:
+    - run: echo "cat /etc/*-release" # Echo Linux version
+      
       #- run:
       #    name: Installing CA certificates # To make cache work
       #    command: 'apt-get update && apt install -y ca-certificates'              
-      - restore_cache: # Restores the cached dependency.
+    - restore_cache: # Restores the cached dependency.
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-          
-      - run: echo "Build with cache restored"
+
+    - run: echo "Build with cache restored"
       
      # - run: # need to search for correct path where packages are stored or select another docker
      #     name: Testing GCC
