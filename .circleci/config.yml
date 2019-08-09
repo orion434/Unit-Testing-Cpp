@@ -1,13 +1,14 @@
-version: 2
+version: 2.1
 jobs:
 
-  build-one:
+  build-docker-1804:
     docker:
       - image: ubuntu:18.04 # it is faster, do not support sudo? 
+    docker_layer_caching: true    # default - false
 
     steps:
       - checkout
-      - run: echo "A first hello"
+      - run: echo "Build with ubuntu 18.04 Docker"
       - run:
           name: Performing 'apt-get update'
           command: 'apt-get update'
@@ -17,33 +18,41 @@ jobs:
       - run:
           name: Installing GCC
           command: 'apt-get install -y gcc g++'
+      - run:
+          name: Installing GCC
+          command: 'gcc --version && g++ --version'
+      - run:
+          name: Creating Build Files
+          command: 'cmake -H. -Bbuild'
+      - run:
+          name: Creating Binary Files
+          command: 'cmake --build build'
+      - run:
+          name: Point Unit Testing
+          command: './bin/pointTest.x'
 
-    test:
-      pre:
-        - gcc --version
-        - g++ --version
-        - make    
+    #test:
+    #  pre:
+    #    - gcc --version
+    #    - g++ --version
+    #    - make --version   
 
-  build-two:
+  build-machine-1604:
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-1604:201903-01 # no need to install sudo
       docker_layer_caching: true    # default - false
       # Note: You must open a support ticket to have a CircleCI Sales representative enable 
       # Docker Layer Caching on your circleci.com account for an additional fee. 
       # DLC is available by default for CircleCI installations hosted in your own datacenter
       # or private cloud
 
-    #docker:
-    #  - image: ubuntu:18.04
-    #docker_layer_caching: true    # default - false
-
-    #dependencies:
-    #    pre:
-    #      - sudo apt-get -y update
+    dependencies:
+        pre:
+         - sudo apt-get -y update
 
     steps:
-      - checkout
-
+      - checkout # checkout project source code into the job’s working_directory.
+      - run: echo "Build with ubuntu 16.04 :201903-01 (LTS) Machine"
      # - run:
      #     name: Performing 'apt-get update'
      #     command: 'apt-get update'
@@ -73,8 +82,8 @@ jobs:
         # - make    
 
 workflows:
-  version: 2
+  version: 2.1
   build_one_and_two:
      jobs:
-       - build-one
-       - build-two
+       - build-docker-1804
+       - build-machine-1604
