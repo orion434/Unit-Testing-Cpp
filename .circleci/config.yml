@@ -3,7 +3,6 @@ jobs:
 
   build-one:
     docker:
-      #- image: circleci/ruby:2.4.1
       - image: ubuntu:18.04
 
     steps:
@@ -11,7 +10,7 @@ jobs:
       - run: echo "A first hello"
       - run:
           name: Installing GCC
-          command: 'sudo apt-get install -y gcc g++'
+          command: 'apt-get install -y gcc g++'
 
     test:
      # pre:
@@ -20,13 +19,17 @@ jobs:
        - make    
 
   build-two:
-    machine:
-      image: ubuntu-1604:201903-01
-      docker_layer_caching: true    # default - false
+#    machine:
+ #     image: ubuntu-1604:201903-01
+  #    docker_layer_caching: true    # default - false
       # Note: You must open a support ticket to have a CircleCI Sales representative enable 
       # Docker Layer Caching on your circleci.com account for an additional fee. 
       # DLC is available by default for CircleCI installations hosted in your own datacenter
       # or private cloud
+
+    docker:
+      - image: ubuntu:18.04
+    docker_layer_caching: true    # default - false
 
     #dependencies:
     #    pre:
