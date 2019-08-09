@@ -51,7 +51,10 @@ jobs:
       - image: ubuntu:18.04
     steps:
       - restore_cache: # Restores the cached dependency.
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          key: 
+           - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+           - v1-repo-
+
       - run: echo "Build with cache restored"
       
 
