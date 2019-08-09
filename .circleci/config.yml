@@ -135,10 +135,9 @@ jobs:
 
   build-docker-tester:
     docker:
-        # - image: ubuntu:18.04
-        - image: circleci/ruby:2.4.1 #  preinstalled git, ssh, gzip, tar, ca-certificates, curl, wget
-
-      steps:
+       # - image: ubuntu:18.04
+       - image: circleci/ruby:2.4.1 #  preinstalled git, ssh, gzip, tar, ca-certificates, curl, wget
+    steps:
       - run: cat /etc/*-release # Echo Linux version
       
 workflows:
