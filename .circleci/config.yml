@@ -62,7 +62,7 @@ jobs:
 
   build-use-cache:
     docker:
-      - image: docker:stable-git #ubuntu:18.04
+      - image: circleci/docker:stable-git #ubuntu:18.04
     steps:
       - run:
           name: Installing CA certificates # To make cache work
