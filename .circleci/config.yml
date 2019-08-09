@@ -28,9 +28,9 @@ jobs:
       # DLC is available by default for CircleCI installations hosted in your own datacenter
       # or private cloud
 
-    dependencies:
-        pre:
-          - sudo apt-get -y update
+    #dependencies:
+    #    pre:
+    #      - sudo apt-get -y update
 
     steps:
       - checkout
@@ -56,11 +56,12 @@ jobs:
       - run:
           name: Point Unit Testing
           command: './bin/pointTest.x'
-      test:
+     
+     # test:
        # pre:
-         - gcc --version
-         - g++ --version
-         - make    
+      #   - gcc --version
+       #  - g++ --version
+        # - make    
 
 workflows:
   version: 2
