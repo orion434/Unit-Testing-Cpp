@@ -48,38 +48,38 @@ jobs:
   build-create-cache:
     docker:
       - image: ubuntu:18.04 
-  steps:
-      - checkout
-      - run: echo "Build with ubuntu 18.04 Docker"
-      - run:
-          name: Performing 'apt-get update'
-          command: 'apt-get update'
-      - run: 
-          name: Installing SUDO    
-          command: 'apt-get install -y sudo'    
-      - run:
-          name: Installing GCC
-          command: 'apt-get install -y gcc g++'
-      - run:
-          name: Testing GCC
-          command: 'gcc --version && g++ --version'
+    steps:
+        - checkout
+        - run: echo "Build with ubuntu 18.04 Docker"
+        - run:
+            name: Performing 'apt-get update'
+            command: 'apt-get update'
+        - run: 
+            name: Installing SUDO    
+            command: 'apt-get install -y sudo'    
+        - run:
+            name: Installing GCC
+            command: 'apt-get install -y gcc g++'
+        - run:
+            name: Testing GCC
+            command: 'gcc --version && g++ --version'
 
-      - run:
-          name: Install CMAKE
-          command: 'sudo apt-get install -y cmake'
-      - run:
-          name: Creating Build Files
-          command: 'cmake -H. -Bbuild'
-      - run:
-          name: Creating Binary Files
-          command: 'cmake --build build'
-      - run:
-          name: Point Unit Testing
-          command: './bin/pointTest.x'
-      - save_cache:
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-          paths:
-          - ~/circleci-demo-workflows
+        - run:
+            name: Install CMAKE
+            command: 'sudo apt-get install -y cmake'
+        - run:
+            name: Creating Build Files
+            command: 'cmake -H. -Bbuild'
+        - run:
+            name: Creating Binary Files
+            command: 'cmake --build build'
+        - run:
+            name: Point Unit Testing
+            command: './bin/pointTest.x'
+        - save_cache:
+            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+            paths:
+            - ~/circleci-demo-workflows
 
 
   build-use-cache:
