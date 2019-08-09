@@ -64,6 +64,9 @@ jobs:
     docker:
       - image: ubuntu:18.04
     steps:
+      - run:
+          name: Installing CA certificates # To make cache work
+          command: 'apt-get update && apt install -y ca-certificates'              
       - restore_cache: # Restores the cached dependency.
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run: echo "Build with cache restored"
