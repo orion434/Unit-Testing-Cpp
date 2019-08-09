@@ -1,7 +1,7 @@
 version: 2.1
 jobs:
 
-  build-docker1804:
+  build-docker-1804:
     docker:
       - image: ubuntu:18.04 # it is faster, do not support sudo? 
     # docker_layer_caching: true    # default - false # not permitted with docker
@@ -103,9 +103,9 @@ workflows:
   version: 2.1
   build_one_and_two:
      jobs:
-       - build-docker1804
+       - build-docker-1804
        - build-machine-1604
-       - build-cache
-    #   - build-cache:
-    #     requires: 
-    #      - build-docker
+      # - build-cache
+       - build-cache:
+         requires: 
+          - build-docker-1804
