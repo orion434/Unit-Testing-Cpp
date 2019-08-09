@@ -45,11 +45,8 @@ jobs:
     #    - gcc --version
     #    - g++ --version
     #    - make --version   
-
-
-
       
- build-cache:
+  build-cache:
     docker:
       - image: ubuntu:18.04
     steps:
@@ -104,7 +101,7 @@ jobs:
 
 workflows:
   version: 2.1
-  build_one_and_two:
+  job_workflows:
      jobs:
        - build-docker
        - build-machine
