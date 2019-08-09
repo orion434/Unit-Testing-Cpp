@@ -55,7 +55,7 @@ jobs:
             command: 'apt-get update'
         - run:
             name: Installing CA certificates # To make cache work
-            command: 'apt-get install -y ca-certificates'              
+            command: 'apt install -y ca-certificates'              
         # run:
         #   name: Install CMAKE
         #   command: 'apt-get install -y cmake'
