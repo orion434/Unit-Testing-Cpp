@@ -62,10 +62,6 @@ jobs:
             name: Testing GCC
             command: 'gcc --version && g++ --version'
 
-        
-        - run:
-            name: Point Unit Testing
-            command: './bin/pointTest.x'
         - save_cache:
             key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
             paths:
