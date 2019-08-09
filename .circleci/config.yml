@@ -35,26 +35,28 @@ jobs:
           name: Point Unit Testing
           command: './bin/pointTest.x'
 
-      - save_cache: # Caches dependencies with a cache key
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-          paths:
-            - ~/circleci-demo-workflows
-
     #test:
     #  pre:
     #    - gcc --version
     #    - g++ --version
-    #    - make --version   
+    #    - make --version  
 
-  build-with-cache:
+  build-create-cache:
+    docker:
+      - image: ubuntu:18.04 # it is faster, do not support sudo? 
+    # docker_layer_caching: true    # default - false # not permitted with docker
+    steps:
+      - save_cache: # Caches dependencies with a cache key
+        key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+        paths:
+          - ~/circleci-demo-workflows
+
+  build-use-cache:
     docker:
       - image: ubuntu:18.04
     steps:
       - restore_cache: # Restores the cached dependency.
-          key: 
-           - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-           - v1-repo-
-
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run: echo "Build with cache restored"
       
 
@@ -106,9 +108,10 @@ workflows:
   version: 2.1
   multiple-builds:
      jobs:
-       - build-docker-1804
-       - build-machine-1604
-      # - build-cache
-       - build-with-cache:
+      # - build-docker-1804
+      # - build-machine-1604
+
+      - build-create-cache
+      - build-use-cache:
            requires: 
             - build-docker-1804
