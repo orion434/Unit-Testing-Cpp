@@ -51,9 +51,6 @@ jobs:
     steps:
         - checkout
         - run:
-            name: Performing 'apt-get update'
-            command: 'apt-get update'
-        - run:
             name: Installing GCC
             command: 'apt-get install -y gcc g++'
         - run:
