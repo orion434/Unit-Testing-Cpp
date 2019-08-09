@@ -1,7 +1,7 @@
 version: 2.1
 jobs:
 
-  build-docker:
+  build-docker1804:
     docker:
       - image: ubuntu:18.04 # it is faster, do not support sudo? 
     # docker_layer_caching: true    # default - false # not permitted with docker
@@ -50,12 +50,12 @@ jobs:
     docker:
       - image: ubuntu:18.04
     steps:
-      - restore_cache: # Restores the cached dependency.
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+     # - restore_cache: # Restores the cached dependency.
+      #    key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run: echo "Build with cache restored"
       
 
-  build-machine:
+  build-machine-1604:
     machine:
       image: ubuntu-1604:201903-01 # no need to install sudo
       docker_layer_caching: true    # default - false
@@ -103,8 +103,9 @@ workflows:
   version: 2.1
   build_one_and_two:
      jobs:
-       - build-docker
-       - build-machine
+       - build-docker1804
+       - build-machine-1604
+       - build-cache
     #   - build-cache:
     #     requires: 
     #      - build-docker
