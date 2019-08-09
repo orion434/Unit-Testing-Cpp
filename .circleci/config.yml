@@ -49,6 +49,10 @@ jobs:
     docker:
       - image: ubuntu:18.04 
     steps:
+        - checkout
+        - run:
+            name: Performing 'apt-get update'
+            command: 'apt-get update'
         - run:
             name: Installing CA certificates # To make cache work
             command: 'apt-get install -y ca-certificates'              
