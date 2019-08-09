@@ -47,6 +47,7 @@ jobs:
 
   build-create-cache:
     docker:
+      - image: circleci/postgres:9.6.2
       - image: ubuntu:18.04 
     steps:
         - checkout
@@ -56,6 +57,12 @@ jobs:
         - run:
             name: Installing GCC
             command: 'apt-get install -y gcc g++'
+        - run:
+            name: Installing CA certificates # To make cache work
+            command: 'apt-get install -y ca-certificates'              
+        # run:
+        #   name: Install CMAKE
+        #   command: 'apt-get install -y cmake'
         - save_cache:
             #key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
             key: v1-repo
