@@ -52,7 +52,11 @@ jobs:
     steps:
         - run:
             name: Installing CA certificates # To make cache work
-            command: 'apt-get update && apt install -y ca-certificates'              
+            command: 'apt-get update && apt install -y ca-certificates'    
+        - run:
+            name: Testing GCC
+            command: 'gcc --version && g++ --version'   
+
         - save_cache:
             key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
             #key: v1-repo
@@ -62,7 +66,7 @@ jobs:
 
   build-use-cache:
     docker:
-      - image: circleci/docker:stable-git #ubuntu:18.04
+      - image: #ubuntu:18.04
     steps:
       - run:
           name: Installing CA certificates # To make cache work
