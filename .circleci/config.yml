@@ -19,8 +19,12 @@ jobs:
           name: Installing GCC
           command: 'apt-get install -y gcc g++'
       - run:
-          name: Installing GCC
+          name: Testing GCC
           command: 'gcc --version && g++ --version'
+
+      - run:
+          name: Install CMAKE
+          command: 'sudo apt-get install -y cmake'
       - run:
           name: Creating Build Files
           command: 'cmake -H. -Bbuild'
@@ -31,11 +35,28 @@ jobs:
           name: Point Unit Testing
           command: './bin/pointTest.x'
 
+      - save_cache: # Caches dependencies with a cache key
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/circleci-demo-workflows
+
     #test:
     #  pre:
     #    - gcc --version
     #    - g++ --version
     #    - make --version   
+
+
+
+      
+ build-cache:
+    docker:
+      - image: ubuntu:18.04
+    steps:
+      - restore_cache: # Restores the cached dependency.
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run: echo "Build with cache restored"
+      
 
   build-machine:
     machine:
@@ -87,3 +108,6 @@ workflows:
      jobs:
        - build-docker
        - build-machine
+       - build-cache:
+         requires: 
+          - build-docker
