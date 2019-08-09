@@ -107,5 +107,5 @@ workflows:
        - build-machine-1604
       # - build-cache
        - build-cache:
-         requires: 
-          - build-docker-1804
+           requires: 
+            - build-docker-1804
