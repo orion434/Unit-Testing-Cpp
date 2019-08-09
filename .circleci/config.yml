@@ -11,7 +11,7 @@ jobs:
       - run: echo "A first hello"
       - run:
           name: Installing GCC
-          command: 'sudp apt-get install -y gcc g++'
+          command: 'sudo apt-get install -y gcc g++'
 
     test:
      # pre:
@@ -43,7 +43,7 @@ jobs:
      #     command: 'apt-get install -y sudo'
       - run:
           name: Installing GCC
-          command: 'apt-get install -y gcc g++'
+          command: 'sudo apt-get install -y gcc g++'
       - run:
           name: Install CMAKE
           command: 'sudo apt-get install -y cmake'
