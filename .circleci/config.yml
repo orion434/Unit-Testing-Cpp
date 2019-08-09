@@ -3,11 +3,14 @@ jobs:
 
   build-one:
     docker:
-      - image: ubuntu:18.04
+      - image: ubuntu:18.04 # it is faster, do not support sudo? 
 
     steps:
       - checkout
       - run: echo "A first hello"
+      - run:
+          name: Performing 'apt-get update'
+          command: 'apt-get update'
       - run:
           name: Installing GCC
           command: 'apt-get install -y gcc g++'
@@ -19,17 +22,17 @@ jobs:
        - make    
 
   build-two:
-#    machine:
- #     image: ubuntu-1604:201903-01
-  #    docker_layer_caching: true    # default - false
+    machine:
+      image: ubuntu-1604:201903-01
+      docker_layer_caching: true    # default - false
       # Note: You must open a support ticket to have a CircleCI Sales representative enable 
       # Docker Layer Caching on your circleci.com account for an additional fee. 
       # DLC is available by default for CircleCI installations hosted in your own datacenter
       # or private cloud
 
-    docker:
-      - image: ubuntu:18.04
-    docker_layer_caching: true    # default - false
+    #docker:
+    #  - image: ubuntu:18.04
+    #docker_layer_caching: true    # default - false
 
     #dependencies:
     #    pre:
