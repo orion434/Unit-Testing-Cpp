@@ -47,9 +47,9 @@ jobs:
     # docker_layer_caching: true    # default - false # not permitted with docker
     steps:
       - save_cache: # Caches dependencies with a cache key
-        key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-        paths:
-          - ~/circleci-demo-workflows
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+           - ~/circleci-demo-workflows
 
   build-use-cache:
     docker:
