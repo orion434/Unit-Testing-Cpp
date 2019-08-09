@@ -2,13 +2,29 @@ version: 2
 jobs:
   build-one:
     docker:
-      - image: circleci/ruby:2.4.1
+      #- image: circleci/ruby:2.4.1
+      - image: ubuntu:18.04
+
     steps:
       - checkout
       - run: echo "A first hello"
+      - run:
+          name: Installing GCC
+          command: 'sudp apt-get install -y gcc g++'
+
+    test:
+     # pre:
+       - gcc --version
+       - g++ --version
+       - make    
 
   build-two:
     machine:
+
+      dependencies:
+        pre:
+          - sudo apt-get -y update
+
       image: ubuntu-1604:201903-01
       docker_layer_caching: true    # default - false
       # Note: You must open a support ticket to have a CircleCI Sales representative enable 
@@ -22,9 +38,9 @@ jobs:
      # - run:
      #     name: Performing 'apt-get update'
      #     command: 'apt-get update'
-      - run: 
-          name: Installing SUDO    
-          command: 'apt-get install -y sudo'
+     # - run: 
+     #     name: Installing SUDO    
+     #     command: 'apt-get install -y sudo'
       - run:
           name: Installing GCC
           command: 'apt-get install -y gcc g++'
@@ -40,7 +56,12 @@ jobs:
       - run:
           name: Point Unit Testing
           command: './bin/pointTest.x'
-
+      test:
+       # pre:
+         - gcc --version
+         - g++ --version
+         - make    
+         
 workflows:
   version: 2
   build_one_and_two:
