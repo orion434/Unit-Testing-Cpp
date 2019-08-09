@@ -70,7 +70,8 @@ jobs:
   build-use-cache:
     docker:
       - image: ubuntu:18.04
-      - image: circleci/ruby:2.4.1 # image has useful tools like git, openssh-client, and gzip preinstalled
+      - image: circleci/ruby:2.4.1 #  preinstalled git, ssh, gzip, tar, ca-certificates, curl, wget
+
     steps:
       - run:
           name: Installing CA certificates # To make cache work
@@ -79,9 +80,9 @@ jobs:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run: echo "Build with cache restored"
       
-      - run: # need to search for correct path where packages are stored or select another docker
-          name: Testing GCC
-          command: 'gcc --version && g++ --version'
+     # - run: # need to search for correct path where packages are stored or select another docker
+     #     name: Testing GCC
+     #     command: 'gcc --version && g++ --version'
 
 
   build-machine-1604:
