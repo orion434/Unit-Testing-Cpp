@@ -49,8 +49,6 @@ jobs:
     docker:
       - image: ubuntu:18.04 
     steps:
-        - checkout
-        - run: echo "Build with ubuntu 18.04 Docker"
         - run:
             name: Performing 'apt-get update'
             command: 'apt-get update'
