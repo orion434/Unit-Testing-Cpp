@@ -51,8 +51,8 @@ jobs:
     steps:
         - checkout
         - run:
-            name: Installing GCC
-            command: 'apt-get install -y gcc g++'
+            name: Performing 'apt-get update'
+            command: 'apt-get update'
         - run:
             name: Install CMAKE
             command: 'apt-get install -y cmake'
