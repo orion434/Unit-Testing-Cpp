@@ -47,9 +47,8 @@ jobs:
 
   build-create-cache:
     docker:
-      - image: ubuntu:18.04 # it is faster, do not support sudo? 
-    # docker_layer_caching: true    # default - false # not permitted with docker
-    steps:
+      - image: ubuntu:18.04 
+  steps:
       - checkout
       - run: echo "Build with ubuntu 18.04 Docker"
       - run:
@@ -58,10 +57,30 @@ jobs:
       - run: 
           name: Installing SUDO    
           command: 'apt-get install -y sudo'    
-      - save_cache: # Caches dependencies with a cache key
+      - run:
+          name: Installing GCC
+          command: 'apt-get install -y gcc g++'
+      - run:
+          name: Testing GCC
+          command: 'gcc --version && g++ --version'
+
+      - run:
+          name: Install CMAKE
+          command: 'sudo apt-get install -y cmake'
+      - run:
+          name: Creating Build Files
+          command: 'cmake -H. -Bbuild'
+      - run:
+          name: Creating Binary Files
+          command: 'cmake --build build'
+      - run:
+          name: Point Unit Testing
+          command: './bin/pointTest.x'
+      - save_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-           - ~/circleci-demo-workflows
+          - ~/circleci-demo-workflows
+
 
   build-use-cache:
     docker:
@@ -120,7 +139,7 @@ workflows:
   version: 2.1
   multiple-builds:
     jobs:
-    - build-docker-1804
+  # - build-docker-1804
       # - build-machine-1604
 
     - build-create-cache
