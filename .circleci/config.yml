@@ -51,14 +51,8 @@ jobs:
       - image: ubuntu:18.04 
     steps:
         - run:
-            name: Performing 'apt-get update'
-            command: 'apt-get update'
-        - run:
             name: Installing CA certificates # To make cache work
             command: 'apt install -y ca-certificates'              
-        # run:
-        #   name: Install CMAKE
-        #   command: 'apt-get install -y cmake'
         - save_cache:
             #key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
             key: v1-repo
