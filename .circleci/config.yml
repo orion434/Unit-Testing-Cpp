@@ -15,9 +15,9 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: Performing 'apt-get update'
-          command: 'apt-get update'
+     # - run:
+     #     name: Performing 'apt-get update'
+     #     command: 'apt-get update'
       - run: 
           name: Installing SUDO    
           command: 'apt-get install -y sudo'
