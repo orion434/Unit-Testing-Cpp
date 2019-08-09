@@ -11,15 +11,18 @@ jobs:
       - run:
           name: Performing 'apt-get update'
           command: 'apt-get update'
+      - run: 
+          name: Installing SUDO    
+          command: 'apt-get install -y sudo'    
       - run:
           name: Installing GCC
           command: 'apt-get install -y gcc g++'
 
     test:
-     # pre:
-       - gcc --version
-       - g++ --version
-       - make    
+      pre:
+        - gcc --version
+        - g++ --version
+        - make    
 
   build-two:
     machine:
