@@ -51,6 +51,9 @@ jobs:
       - image: ubuntu:18.04 
     steps:
         - run:
+            name: Performing 'apt-get update'
+            command: 'apt-get update'
+        - run:
             name: Installing CA certificates # To make cache work
             command: 'apt install -y ca-certificates'              
         - save_cache:
