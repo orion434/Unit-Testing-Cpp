@@ -63,6 +63,12 @@ jobs:
         - run:
             name: Testing GCC
             command: 'gcc --version && g++ --version'
+        - run:
+            name: Install CMAKE
+            command: 'sudo apt-get install -y cmake'
+        - run:
+            name: Creating Build Files
+            command: 'cmake -H. -Bbuild'
         - save_cache:
             key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
             paths:
