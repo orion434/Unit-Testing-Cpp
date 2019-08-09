@@ -1,5 +1,6 @@
 version: 2
 jobs:
+
   build-one:
     docker:
       #- image: circleci/ruby:2.4.1
@@ -20,17 +21,16 @@ jobs:
 
   build-two:
     machine:
-
-      dependencies:
-        pre:
-          - sudo apt-get -y update
-
       image: ubuntu-1604:201903-01
       docker_layer_caching: true    # default - false
       # Note: You must open a support ticket to have a CircleCI Sales representative enable 
       # Docker Layer Caching on your circleci.com account for an additional fee. 
       # DLC is available by default for CircleCI installations hosted in your own datacenter
       # or private cloud
+
+    dependencies:
+        pre:
+          - sudo apt-get -y update
 
     steps:
       - checkout
@@ -61,7 +61,7 @@ jobs:
          - gcc --version
          - g++ --version
          - make    
-         
+
 workflows:
   version: 2
   build_one_and_two:
