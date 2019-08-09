@@ -50,7 +50,6 @@ jobs:
       - image: ubuntu:18.04 
     steps:
         - checkout
-        - run: echo "Build with ubuntu 18.04 Docker"
         - run:
             name: Performing 'apt-get update'
             command: 'apt-get update'
@@ -60,9 +59,6 @@ jobs:
         - run:
             name: Installing GCC
             command: 'apt-get install -y gcc g++'
-        - run:
-            name: Testing GCC
-            command: 'gcc --version && g++ --version'
         - run:
             name: Install CMAKE
             command: 'sudo apt-get install -y cmake'
