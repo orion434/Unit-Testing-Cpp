@@ -1,19 +1,18 @@
- version: 2.1
+version: 2
+jobs:
+  build:
+    #docker:
+    # - image: "debian:stretch"
+    machine:
+      image: ubuntu-1604:201903-01
+      docker_layer_caching: true    # default - false
 
- jobs:
-   build:
-     #docker:
-     # - image: "debian:stretch"
-     machine:
-       image: ubuntu-1604:201903-01
-       docker_layer_caching: true    # default - false
+    steps:
+      - checkout
 
-     steps:
-       - checkout
-
-       - run: # echo "A first hello"
-           name: Installing SUDO
-           command: 'apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*'
+      - run: # echo "A first hello"
+          name: Installing SUDO
+          command: 'apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*'
       - run:
           name: Installing GCC
           command: 'apt-get update && apt-get install -y gcc g++'
