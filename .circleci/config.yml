@@ -46,12 +46,12 @@ jobs:
     #    - g++ --version
     #    - make --version   
 
-  build-cache:
+  build-with-cache:
     docker:
       - image: ubuntu:18.04
     steps:
-     # - restore_cache: # Restores the cached dependency.
-      #    key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache: # Restores the cached dependency.
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run: echo "Build with cache restored"
       
 
@@ -101,11 +101,11 @@ jobs:
 
 workflows:
   version: 2.1
-  build_one_and_two:
+  multiple-builds:
      jobs:
        - build-docker-1804
        - build-machine-1604
       # - build-cache
-       - build-cache:
+       - build-with-cache:
            requires: 
             - build-docker-1804
