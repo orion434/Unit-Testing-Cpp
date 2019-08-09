@@ -46,6 +46,14 @@ jobs:
       - image: ubuntu:18.04 # it is faster, do not support sudo? 
     # docker_layer_caching: true    # default - false # not permitted with docker
     steps:
+      - checkout
+      - run: echo "Build with ubuntu 18.04 Docker"
+      - run:
+          name: Performing 'apt-get update'
+          command: 'apt-get update'
+      - run: 
+          name: Installing SUDO    
+          command: 'apt-get install -y sudo'    
       - save_cache: # Caches dependencies with a cache key
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
           paths:
