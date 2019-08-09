@@ -4,7 +4,7 @@ jobs:
   build-docker:
     docker:
       - image: ubuntu:18.04 # it is faster, do not support sudo? 
-    docker_layer_caching: true    # default - false
+     # docker_layer_caching: true    # default - false # NOT PERMITTED WITH DOCKER
 
     steps:
       - checkout
