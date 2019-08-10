@@ -139,7 +139,11 @@ jobs:
        - image: circleci/ruby:2.4.1 #  Debian GNU/Linux 8 with git, ssh, gzip, tar, ca-certificates, curl, wget
     steps:
       - run: cat /etc/*-release # Echo Linux version
-      
+  
+  build-master:
+    steps:
+      - run: cat /etc/*-release # Echo Linux version    
+
 workflows:
   version: 2.1
   multiple-builds:
@@ -153,4 +157,5 @@ workflows:
   #      requires: 
   #      - build-create-cache
 
-    - build-docker-tester    
+  #  - build-docker-tester    
+    - build-master
