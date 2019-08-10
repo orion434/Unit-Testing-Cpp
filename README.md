@@ -8,11 +8,17 @@ This project derived from this [repository](https://github.com/guilhermepo2/cpp-
 
 # Badges
 
-![GitHub release](https://img.shields.io/github/release/orion434/Unit-Testing-Cpp?style=for-the-badge&link=https://github.com/orion434/Unit-Testing-Cpp/releases)
+<a href="https://github.com/orion434/Unit-Testing-Cpp/releases" alt="releases">
+![GitHub release](https://img.shields.io/github/release/orion434/Unit-Testing-Cpp?style=for-the-badge)
+<img src="https://img.shields.io/github/release/orion434/Unit-Testing-Cpp?style=for-the-badge" />
+</a>
 
-![GitHub license](https://img.shields.io/github/license/orion434/Unit-Testing-Cpp?style=for-the-badge&link=https://github.com/orion434/Unit-Testing-Cpp/blob/v1.0/LICENSE.txt)
+<a href="link=https://github.com/orion434/Unit-Testing-Cpp/blob/v1.0/LICENSE.txt alt="license">![GitHub license](https://img.shields.io/github/license/orion434/Unit-Testing-Cpp?style=for-the-badge)</a>
 
-![GitHub code-size](https://img.shields.io/github/code-size/orion434/Unit-Testing-Cpp?style=for-the-badge&link=#)
+
+https://img.shields.io/github/last-commit/orion434/Unit-Testing-Cpp?style=for-the-badge
+
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/orion434/Unit-Testing-Cpp?style=for-the-badge&link=#&link=#)
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/orion434/Unit-Testing-Cpp?style=for-the-badge)
 
