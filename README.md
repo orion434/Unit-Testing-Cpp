@@ -8,9 +8,9 @@ This project derived from this [repository](https://github.com/guilhermepo2/cpp-
 
 # Badges
 
-[![GitHub release](https://img.shields.io/github/release/orion434/Unit-Testing-Cpp?style=for-the-badge)](https://github.com/orion434/Unit-Testing-Cpp/releases)
-[![GitHub license](https://img.shields.io/github/license/orion434/Unit-Testing-Cpp?style=for-the-badge)](https://github.com/orion434/Unit-Testing-Cpp/blob/v1.0/LICENSE.txt)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/orion434/Unit-Testing-Cpp?style=for-the-badge&link=#&link=#)
-![GitHub repo size](https://img.shields.io/github/repo-size/orion434/Unit-Testing-Cpp?style=for-the-badge)
-![GitHub issues](https://img.shields.io/github/issues/orion434/Unit-Testing-Cpp?style=for-the-badge)
-![CircleCI](https://img.shields.io/circleci/build/github/orion434/Unit-Testing-Cpp?style=for-the-badge&logo=circleci)
+[![GitHub release](https://img.shields.io/github/release/orion434/Unit-Testing-Cpp?style=plastic)](https://github.com/orion434/Unit-Testing-Cpp/releases)
+[![GitHub license](https://img.shields.io/github/license/orion434/Unit-Testing-Cpp?style=plastic](https://github.com/orion434/Unit-Testing-Cpp/blob/v1.0/LICENSE.txt)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/orion434/Unit-Testing-Cpp?style=plastic&link=#&link=#)
+![GitHub repo size](https://img.shields.io/github/repo-size/orion434/Unit-Testing-Cpp?style=plastic)
+![GitHub issues](https://img.shields.io/github/issues/orion434/Unit-Testing-Cpp?style=plastic)
+![CircleCI](https://img.shields.io/circleci/build/github/orion434/Unit-Testing-Cpp?style=plastic&logo=circleci)
