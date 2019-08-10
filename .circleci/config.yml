@@ -139,7 +139,10 @@ jobs:
        - image: circleci/ruby:2.4.1 #  Debian GNU/Linux 8 with git, ssh, gzip, tar, ca-certificates, curl, wget
     steps:
       - run: cat /etc/*-release # Echo Linux version
-  
+
+###################################
+
+# Ubuntu LTS for master branch
   build-master-ubuntu:
     docker:
       #- image: ubuntu:18.04 # it is faster, do not support sudo? 
@@ -147,6 +150,7 @@ jobs:
     steps:
       - run: cat /etc/*-release # Echo Linux version    
   
+# Rocker/tidyverse for dev branch
   build-dev-tidyverse :
     docker:
       #- image: rocker/tidyverse
@@ -163,7 +167,7 @@ workflows:
           branches: 
             only: master
 
-    - build-dev-tidiverse: # Use Rocker/tidyverse for dev
+    - build-dev-tidyverse: # Use Rocker/tidyverse for dev
         filters:
           branches: 
             only: dev
