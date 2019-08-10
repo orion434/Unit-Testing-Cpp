@@ -74,7 +74,7 @@ jobs:
       - image: circleci/ruby:2.4.1 #  preinstalled git, ssh, gzip, tar, ca-certificates, curl, wget
 
     steps:
-    - run: echo "cat /etc/*-release" # Echo Linux version
+    - run: cat /etc/*-release # Echo Linux version
       
       #- run:
       #    name: Installing CA certificates # To make cache work
