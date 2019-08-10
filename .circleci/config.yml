@@ -158,13 +158,12 @@ workflows:
   version: 2.1
   multiple-builds:
     jobs:
-
-    - build-master-ubuntu # Use Ubuntu LTS for master branch
+    - build-master-ubuntu: # Use Ubuntu LTS for master branch
         filters:
           branches: 
             only: master
 
-    - build-dev-tidiverse # Use Rocker/tidyverse for dev
+    - build-dev-tidiverse: # Use Rocker/tidyverse for dev
         filters:
           branches: 
             only: dev
