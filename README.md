@@ -8,10 +8,7 @@ This project derived from this [repository](https://github.com/guilhermepo2/cpp-
 
 # Badges
 
-<a href="https://github.com/orion434/Unit-Testing-Cpp/releases" alt="releases">
-![GitHub release](https://img.shields.io/github/release/orion434/Unit-Testing-Cpp?style=for-the-badge)
-<img src="https://img.shields.io/github/release/orion434/Unit-Testing-Cpp?style=for-the-badge" />
-</a>
+[![GitHub release](https://img.shields.io/github/release/orion434/Unit-Testing-Cpp?style=for-the-badge)](https://github.com/orion434/Unit-Testing-Cpp/releases)
 
 [![GitHub license](https://img.shields.io/github/license/orion434/Unit-Testing-Cpp?style=for-the-badge)](https://github.com/orion434/Unit-Testing-Cpp/blob/v1.0/LICENSE.txt)
 
