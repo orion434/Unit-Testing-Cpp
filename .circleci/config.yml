@@ -183,8 +183,7 @@ workflows:
     - build-on-dev-pull-request:
         filters:
           branches:
-            ignore: master
-            ignore: dev
+            ignore: master, dev
 
 # Rocker/tidyverse for dev branch
   build-dev-tidyverse :
