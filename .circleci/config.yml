@@ -158,6 +158,14 @@ jobs:
     steps:
       - run: cat /etc/*-release # Echo Linux version    
 
+# Rocker/tidyverse for pull request to dev
+  build-on-dev-pull-request :
+    docker:
+      #- image: rocker/tidyverse
+      - image: rocker/tidyverse
+    steps:
+      - run: cat /etc/*-release # Echo Linux version    
+
 workflows:
   version: 2.1
   multiple-builds:
@@ -172,6 +180,19 @@ workflows:
           branches: 
             only: dev
 
+    - build-on-dev-pull-request:
+        filters:
+          branches:
+            ignore: master
+            ignore: dev
+
+# Rocker/tidyverse for dev branch
+  build-dev-tidyverse :
+    docker:
+      #- image: rocker/tidyverse
+      - image: rocker/tidyverse@sha256:9e645bc60be28f259573d4d1fd4a058f116031732da3b31896eb2625b1ad2e95
+    steps:
+      - run: cat /etc/*-release # Echo Linux version    
   # - build-docker-1804
       # - build-machine-1604
 
