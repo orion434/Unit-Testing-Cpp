@@ -141,6 +141,9 @@ jobs:
       - run: cat /etc/*-release # Echo Linux version
   
   build-master:
+    docker:
+      #- image: ubuntu:18.04 # it is faster, do not support sudo? 
+      - image: ubuntu:latest # latest LTS (currently 18.04)
     steps:
       - run: cat /etc/*-release # Echo Linux version    
 
