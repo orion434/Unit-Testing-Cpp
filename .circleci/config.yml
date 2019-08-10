@@ -177,7 +177,8 @@ workflows:
             branches:
               only: master
 
-      - build-dev-tidyverse:  # Use Rocker/tidyverse for dev
+      #- build-dev-tidyverse:  # Use Rocker/tidyverse for dev
+      - build-master-ubuntu:  # Use Ubuntu LTS for master branch
           filters:
             branches:
               only: dev
