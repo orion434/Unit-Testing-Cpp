@@ -6,6 +6,8 @@ This project derived from this [repository](https://github.com/guilhermepo2/cpp-
 
 #Badges
 
+![CircleCI](https://img.shields.io/circleci/build/github/orion434/Unit-Testing-Cpp?style=for-the-badge)
+
 ![GitHub release](https://img.shields.io/github/release/orion434/Unit-Testing-Cpp?color=green&style=for-the-badge)
 
 ![GitHub license](https://img.shields.io/github/license/orion434/Unit-Testing-Cpp?color=green&style=for-the-badge)
