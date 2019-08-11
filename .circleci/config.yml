@@ -90,7 +90,6 @@ jobs:
       #     name: Testing GCC
       #     command: 'gcc --version && g++ --version'
 
-
   build-machine-1604:
     machine:
       image: ubuntu-1604:201903-01  # no need to install sudo
