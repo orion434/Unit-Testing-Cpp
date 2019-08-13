@@ -1,11 +1,12 @@
+---
 version: 2.1
 jobs:
 
   build-docker-1804:
     docker:
-      #- image: ubuntu:18.04 # it is faster, do not support sudo? 
-      - image: ubuntu:latest # latest LTS (currently 18.04)
-    # docker_layer_caching: true    # default - false # not permitted with docker
+      #  - image: ubuntu:18.04 # it is faster, do not support sudo?
+      - image: ubuntu:latest  #  latest LTS (currently 18.04)
+    # docker_layer_caching: true  # default - false # not permitted with docker
 
     steps:
       - checkout
@@ -13,9 +14,9 @@ jobs:
       - run:
           name: Performing 'apt-get update'
           command: 'apt-get update'
-      - run: 
-          name: Installing SUDO    
-          command: 'apt-get install -y sudo'    
+      - run:
+          name: Installing SUDO
+          command: 'apt-get install -y sudo'
       - run:
           name: Installing GCC
           command: 'apt-get install -y gcc g++'
@@ -38,78 +39,79 @@ jobs:
       - save_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-          - ~/circleci-demo-workflows
+            - ~/circleci-demo-workflows
 
-    #test:
-    #  pre:
-    #    - gcc --version
-    #    - g++ --version
-    #    - make --version  
+    #  test:
+      #  pre:
+      #    - gcc --version
+      #    - g++ --version
+      #    - make --version
 
   build-create-cache:
     docker:
-     #- image: circleci/postgres:9.6.2
-      - image: ubuntu:18.04 
+      # - image: circleci/postgres:9.6.2
+      - image: ubuntu:18.04
     steps:
-        - run:
-            name: Installing CA certificates # To make cache work
-            command: 'apt-get update && apt install -y ca-certificates'    
-        - run:
-            name: Installing GCC
-            command: 'apt-get install -y gcc g++'
-        - run:
-            name: Testing GCC
-            command: 'gcc --version && g++ --version'
+      - run:
+          name: Installing CA certificates  # To make cache work
+          command: 'apt-get update && apt install -y ca-certificates'
+      - run:
+          name: Installing GCC
+          command: 'apt-get install -y gcc g++'
+      - run:
+          name: Testing GCC
+          command: 'gcc --version && g++ --version'
 
-        - save_cache:
-            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-            #key: v1-repo
-            paths:
+      - save_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          # key: v1-repo
+          paths:
             - ~/circleci-demo-workflows
-
 
   build-use-cache:
     docker:
+      # preinstalled git, ssh, gzip, tar, ca-certificates, curl, wget
+      - image: circleci/ruby:2.4.1
       # - image: ubuntu:18.04
-      - image: circleci/ruby:2.4.1 #  preinstalled git, ssh, gzip, tar, ca-certificates, curl, wget
 
     steps:
-    - run: cat /etc/*-release # Echo Linux version
-      
-      #- run:
+      - run: cat /etc/*-release  # Echo Linux version
+
+      # - run:
       #    name: Installing CA certificates # To make cache work
-      #    command: 'apt-get update && apt install -y ca-certificates'              
-    - restore_cache: # Restores the cached dependency.
+      #    command: 'apt-get update && apt install -y ca-certificates'
+      - restore_cache:  # Restores the cached dependency.
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
 
-    - run: echo "Build with cache restored"
-      
-     # - run: # need to search for correct path where packages are stored or select another docker
-     #     name: Testing GCC
-     #     command: 'gcc --version && g++ --version'
+      - run: echo "Build with cache restored"
+
+      # need to search for path where packages are or select another docker
+      # - run:
+      #     name: Testing GCC
+      #     command: 'gcc --version && g++ --version'
 
 
   build-machine-1604:
     machine:
-      image: ubuntu-1604:201903-01 # no need to install sudo
+      image: ubuntu-1604:201903-01  # no need to install sudo
       docker_layer_caching: true    # default - false
-      # Note: You must open a support ticket to have a CircleCI Sales representative enable 
-      # Docker Layer Caching on your circleci.com account for an additional fee. 
-      # DLC is available by default for CircleCI installations hosted in your own datacenter
-      # or private cloud
+      # Note: You must open a support ticket to have a CircleCI Sales
+      # representative enable Docker Layer Caching on your circleci.com account
+      # for an additional fee. DLC is available by default for CircleCI
+      # installations hosted in your own datacenter or private cloud
 
-    #dependencies:
+    # dependencies:
     #    pre:
     #     - sudo apt-get -y update
 
     steps:
-      - checkout # checkout project source code into the job’s working_directory.
+      - checkout  # checkout git source code into the job’s working_directory.
       - run: echo "Build with ubuntu 16.04 :201903-01 (LTS) Machine"
      # - run:
      #     name: Performing 'apt-get update'
      #     command: 'apt-get update'
-     # - run: 
-     #     name: Installing SUDO    
+     # - run:
+     #     name: Installing SUDO
      #     command: 'apt-get install -y sudo'
       - run:
           name: Installing GCC
@@ -126,51 +128,64 @@ jobs:
       - run:
           name: Point Unit Testing
           command: './bin/pointTest.x'
-     
+
      # test:
-       # pre:
-      #   - gcc --version
-       #  - g++ --version
-        # - make    
+     #   pre:
+     #     - gcc --version
+     #     - g++ --version
+     #     - make
 
   build-docker-tester:
     docker:
-       # - image: ubuntu:18.04
-       - image: circleci/ruby:2.4.1 #  Debian GNU/Linux 8 with git, ssh, gzip, tar, ca-certificates, curl, wget
+      # - image: ubuntu:18.04
+      - image: circleci/ruby:2.4.1  #  Debian GNU/Linux 8 with git, ssh, gzip, tar, ca-certificates, curl, wget
     steps:
-      - run: cat /etc/*-release # Echo Linux version
+      - run: cat /etc/*-release  # Echo Linux version
 
 ###################################
 
 # Ubuntu LTS for master branch
   build-master-ubuntu:
     docker:
-      #- image: ubuntu:18.04 # it is faster, do not support sudo? 
-      - image: ubuntu:latest # latest LTS (currently 18.04)
+      #  - image: ubuntu:18.04 # it is faster, do not support sudo?
+      - image: ubuntu:latest  # latest LTS (currently 18.04)
     steps:
-      - run: cat /etc/*-release # Echo Linux version    
-  
+      - run: cat /etc/*-release  # Echo Linux version
+
 # Rocker/tidyverse for dev branch
-  build-dev-tidyverse :
+  build-dev-tidyverse:
     docker:
-      #- image: rocker/tidyverse
+      # - image: rocker/tidyverse
       - image: rocker/tidyverse@sha256:9e645bc60be28f259573d4d1fd4a058f116031732da3b31896eb2625b1ad2e95
     steps:
-      - run: cat /etc/*-release # Echo Linux version    
+      - run: cat /etc/*-release  # Echo Linux version
+
+# Rocker/tidyverse for pull request to dev
+  build-on-dev-pull-request:
+    docker:
+      # - image: rocker/tidyverse
+      - image: rocker/tidyverse
+    steps:
+      - run: cat /etc/*-release  # Echo Linux version
 
 workflows:
   version: 2.1
   multiple-builds:
     jobs:
-    - build-master-ubuntu: # Use Ubuntu LTS for master branch
-        filters:
-          branches: 
-            only: master
+      - build-master-ubuntu:  # Use Ubuntu LTS for master branch
+          filters:
+            branches:
+              only: master
 
-    - build-dev-tidyverse: # Use Rocker/tidyverse for dev
-        filters:
-          branches: 
-            only: dev
+      - build-dev-tidyverse:  # Use Rocker/tidyverse for dev
+          filters:
+            branches:
+              only: dev
+
+      - build-on-dev-pull-request:
+          filters:
+            branches:
+              ignore: master, dev
 
   # - build-docker-1804
       # - build-machine-1604
@@ -178,9 +193,7 @@ workflows:
   # WORKING:
   #  - build-create-cache
   #  - build-use-cache:
-  #      requires: 
+  #      requires:
   #      - build-create-cache
 
-  #  - build-docker-tester    
-
-  
+  #  - build-docker-tester
