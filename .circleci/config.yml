@@ -170,7 +170,7 @@ workflows:
   version: 2.1
   multiple-builds:
     jobs:
-      - pr-to-dev: # execute on open PR to dev (ignore-master-dev)
+      - pr-to-dev: # execute on open PR to dev or master (but not dev > master)
           filters:
             branches:
               ignore: [master, dev]
