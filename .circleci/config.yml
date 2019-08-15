@@ -188,8 +188,8 @@ jobs:
     steps:
       - run: cat /etc/*-release  # Echo Linux version
 
-# Rocker/tidyverse for pull request to dev
-  run-master-dev-only:
+# Rocker/tidyverse for new test branches (need a pull request to be executed)
+  ignore-master-dev:
     docker:
       # - image: rocker/tidyverse
       - image: rocker/tidyverse
