@@ -210,7 +210,7 @@ workflows:
             branches:
               only: dev
 
-      - run-master-dev-only:
+      - ignore-master-dev:
           filters:
             branches:
               ignore: master, dev
