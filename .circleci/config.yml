@@ -144,7 +144,7 @@ jobs:
 ###################################
 
 # Ubuntu LTS for master branch
-  build-master-ubuntu:
+  after-master-merge:
     docker:
       #  - image: ubuntu:18.04 # it is faster, do not support sudo?
       - image: ubuntu:latest  # latest LTS (currently 18.04)
@@ -161,31 +161,27 @@ jobs:
 
 
 # Rocker/tidyverse for new test branches (need a pull request to be executed)
-  ignore-master-dev:
-    docker:
-      # - image: rocker/tidyverse
-      - image: rocker/tidyverse
-    steps:
-      - run: cat /etc/*-release  # Echo Linux version
+  on-pr-to-dev:
+    docker: {image: rocker/tidyverse}
+    steps: {run: cat /etc/*-release}  # Echo Linux version
 
 workflows:
   version: 2.1
   multiple-builds:
     jobs:
-      - build-master-ubuntu:  # Use Ubuntu LTS for master branch
+      - after-master-merge:  # Use Ubuntu LTS for master branch
           filters:
             branches:
               only: master
 
       - build-dev-tidyverse:  # Use Rocker/tidyverse for dev
           filters:
-            branches:
-              only: dev
+            branches: {only: dev}
 
-      - ignore-master-dev:
+      - on-pr-to-dev: # execute on open PR to dev (ignore-master-dev)
           filters:
             branches:
-              ignore: master, dev
+              ignore: [master, dev]
 
   # - build-docker-1804
       # - build-machine-1604
