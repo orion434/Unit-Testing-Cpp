@@ -151,35 +151,6 @@ jobs:
     steps:
       - run: cat /etc/*-release  # Echo Linux version
 
-# Ubuntu LTS for master branch
-  build-master-ubuntu-install:
-    docker:
-      #  - image: ubuntu:18.04 # it is faster, do not support sudo?
-      - image: ubuntu:latest  # latest LTS (currently 18.04)
-    steps:
-      - run: cat /etc/*-release  # Echo Linux version
-      - run: |  # This is the content of rocker/tidyverse dockerfile
-          apt-get update -qq && apt-get -y --no-install-recommends install \
-          libxml2-dev \
-          libcairo2-dev \
-          libsqlite3-dev \
-          libmariadbd-dev \
-          libmariadb-client-lgpl-dev \
-          libpq-dev \
-          libssh2-1-dev \
-          unixodbc-dev \
-          libsasl2-dev \
-          && install2.r --error \
-            --deps TRUE \
-            tidyverse \
-            dplyr \
-            devtools \
-            formatR \
-            remotes \
-            selectr \
-            caTools \
-            BiocManager
-
 # Rocker/tidyverse for dev branch
   build-dev-tidyverse:
     docker:
@@ -187,6 +158,7 @@ jobs:
       - image: rocker/tidyverse@sha256:9e645bc60be28f259573d4d1fd4a058f116031732da3b31896eb2625b1ad2e95
     steps:
       - run: cat /etc/*-release  # Echo Linux version
+
 
 # Rocker/tidyverse for new test branches (need a pull request to be executed)
   ignore-master-dev:
