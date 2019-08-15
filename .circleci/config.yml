@@ -148,7 +148,7 @@ jobs:
     docker:
       - {image: rocker/tidyverse}
     steps:
-      - {run: cat /etc/*-release, name: Echo Linux version}
+      - run: {command: cat /etc/*-release, name: Echo Linux version}
 
 # Ubuntu LTS for master branch
   after-master-merge:
