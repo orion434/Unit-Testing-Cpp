@@ -143,6 +143,13 @@ jobs:
 
 ###################################
 
+# Rocker/tidyverse for new test branches (need a pull request to be executed)
+  pr-to-dev:
+    docker:
+      - {image: rocker/tidyverse}
+    steps:
+      - {run: cat /etc/*-release, name: Echo Linux version}
+
 # Ubuntu LTS for master branch
   after-master-merge:
     docker:
@@ -158,12 +165,6 @@ jobs:
       - image: rocker/tidyverse@sha256:9e645bc60be28f259573d4d1fd4a058f116031732da3b31896eb2625b1ad2e95
     steps:
       - run: cat /etc/*-release  # Echo Linux version
-
-
-# Rocker/tidyverse for new test branches (need a pull request to be executed)
-  pr-to-dev:
-    docker: {image: rocker/tidyverse}
-    steps: {run: cat /etc/*-release}  # Echo Linux version
 
 workflows:
   version: 2.1
